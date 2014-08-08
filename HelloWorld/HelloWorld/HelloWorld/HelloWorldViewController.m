@@ -22,7 +22,7 @@
 
 - (void)fetchGreeting
 {
-    NSURL *url = [NSURL URLWithString:@"http://myenvironment.seacat/"];
+    NSURL *url = [NSURL URLWithString:@"http://myenvironment.seacat/greeting/"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     [NSURLConnection sendAsynchronousRequest: request

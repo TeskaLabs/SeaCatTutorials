@@ -21,7 +21,7 @@
 		2D7155B31992714900A0CAF0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7155951992714800A0CAF0 /* UIKit.framework */; };
 		2D7155BB1992714900A0CAF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D7155B91992714900A0CAF0 /* InfoPlist.strings */; };
 		2D7155BD1992714900A0CAF0 /* HelloWorldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7155BC1992714900A0CAF0 /* HelloWorldTests.m */; };
-		2D7155CA19927A7B00A0CAF0 /* libSeaCatClientTrial.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7155C719927A7B00A0CAF0 /* libSeaCatClientTrial.a */; };
+		2D7155E21992B2D000A0CAF0 /* SeaCatClientTrial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7155E11992B2D000A0CAF0 /* SeaCatClientTrial.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +54,7 @@
 		2D7155B81992714900A0CAF0 /* HelloWorldTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HelloWorldTests-Info.plist"; sourceTree = "<group>"; };
 		2D7155BA1992714900A0CAF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2D7155BC1992714900A0CAF0 /* HelloWorldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldTests.m; sourceTree = "<group>"; };
-		2D7155C719927A7B00A0CAF0 /* libSeaCatClientTrial.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSeaCatClientTrial.a; sourceTree = "<group>"; };
-		2D7155C919927A7B00A0CAF0 /* SeaCat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeaCat.h; sourceTree = "<group>"; };
+		2D7155E11992B2D000A0CAF0 /* SeaCatClientTrial.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SeaCatClientTrial.framework; path = ../../../../../Downloads/SeaCat_Trial_OSX_iOS/SeaCatClientTrial.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D7155CA19927A7B00A0CAF0 /* libSeaCatClientTrial.a in Frameworks */,
+				2D7155E21992B2D000A0CAF0 /* SeaCatClientTrial.framework in Frameworks */,
 				2D7155941992714800A0CAF0 /* CoreGraphics.framework in Frameworks */,
 				2D7155961992714800A0CAF0 /* UIKit.framework in Frameworks */,
 				2D7155921992714800A0CAF0 /* Foundation.framework in Frameworks */,
@@ -90,7 +89,6 @@
 				2D7155B61992714900A0CAF0 /* HelloWorldTests */,
 				2D7155901992714800A0CAF0 /* Frameworks */,
 				2D71558F1992714800A0CAF0 /* Products */,
-				2D7155C619927A7B00A0CAF0 /* SeaCatClient */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,6 +104,7 @@
 		2D7155901992714800A0CAF0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2D7155E11992B2D000A0CAF0 /* SeaCatClientTrial.framework */,
 				2D7155911992714800A0CAF0 /* Foundation.framework */,
 				2D7155931992714800A0CAF0 /* CoreGraphics.framework */,
 				2D7155951992714800A0CAF0 /* UIKit.framework */,
@@ -155,23 +154,6 @@
 				2D7155B91992714900A0CAF0 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		2D7155C619927A7B00A0CAF0 /* SeaCatClient */ = {
-			isa = PBXGroup;
-			children = (
-				2D7155C719927A7B00A0CAF0 /* libSeaCatClientTrial.a */,
-				2D7155C819927A7B00A0CAF0 /* SeaCatClient */,
-			);
-			path = SeaCatClient;
-			sourceTree = "<group>";
-		};
-		2D7155C819927A7B00A0CAF0 /* SeaCatClient */ = {
-			isa = PBXGroup;
-			children = (
-				2D7155C919927A7B00A0CAF0 /* SeaCat.h */,
-			);
-			path = SeaCatClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -399,6 +381,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/radektomasek/Downloads/SeaCat_Trial_OSX_iOS,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HelloWorld/HelloWorld-Prefix.pch";
 				INFOPLIST_FILE = "HelloWorld/HelloWorld-Info.plist";
@@ -416,6 +402,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/radektomasek/Downloads/SeaCat_Trial_OSX_iOS,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HelloWorld/HelloWorld-Prefix.pch";
 				INFOPLIST_FILE = "HelloWorld/HelloWorld-Info.plist";
