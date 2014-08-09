@@ -18,12 +18,26 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    [self fetchGreeting];
 }
 
-- (void)didReceiveMemoryWarning
+
+
+- (void)fetchGreeting
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSURL *url = [NSURL URLWithString:@"http://nodejshost.seacat/"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    [NSURLConnection sendAsynchronousRequest: request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data,NSError *connectionError)
+     {
+         if (data.length > 0 && connectionError == nil)
+         {
+             NSDictionary *greeting = [NSJSONSerialization JSONObjectWithData:data options: 0 error:NULL];
+             self.result.text = [greeting objectForKey:@"message"];
+         }
+     }];
 }
 
 @end

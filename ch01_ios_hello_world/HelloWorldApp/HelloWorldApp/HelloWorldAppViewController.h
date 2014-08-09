@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface HelloWorldAppViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *result;
 
 @end

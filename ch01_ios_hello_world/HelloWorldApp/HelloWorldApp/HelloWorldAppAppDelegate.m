@@ -7,6 +7,7 @@
 //
 
 #import "HelloWorldAppAppDelegate.h"
+#import <SeaCatClientTrial/SeaCat.h>
 
 @implementation HelloWorldAppAppDelegate
 
