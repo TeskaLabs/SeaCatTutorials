@@ -1,22 +1,25 @@
 //
-//  HelloWorldAppAppDelegate.m
-//  HelloWorldApp
+//  HelloWorldAppDelegate.m
+//  HelloWorld
 //
-//  Created by Radek Tomasek on 8/9/14.
+//  Created by Radek Tomasek on 8/11/14.
 //  Copyright (c) 2014 seatcat.mobi. All rights reserved.
 //
 
-#import "HelloWorldAppAppDelegate.h"
+#import "HelloWorldAppDelegate.h"
 #import <SeaCatClientTrial/SeaCat.h>
 
-@implementation HelloWorldAppAppDelegate
+@implementation HelloWorldAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:	(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    /* This method finalises SeaCat client initial configuration. It also ensures that client is integrated with Core Foundation URL Loading System (check Apple URLLoadingSystem in documentation for more information). So all URL requests are intercepted, analysed and eventually processed by SeaCat gateway instead of common HTTP transport. */
+    
+    [SeaCatClient configure];
+    
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

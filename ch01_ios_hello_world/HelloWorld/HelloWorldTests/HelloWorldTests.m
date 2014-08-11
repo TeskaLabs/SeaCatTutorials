@@ -1,18 +1,18 @@
 //
-//  HelloWorldAppTests.m
-//  HelloWorldAppTests
+//  HelloWorldTests.m
+//  HelloWorldTests
 //
-//  Created by Radek Tomasek on 8/9/14.
+//  Created by Radek Tomasek on 8/11/14.
 //  Copyright (c) 2014 seatcat.mobi. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface HelloWorldAppTests : XCTestCase
+@interface HelloWorldTests : XCTestCase
 
 @end
 
-@implementation HelloWorldAppTests
+@implementation HelloWorldTests
 
 - (void)setUp
 {
