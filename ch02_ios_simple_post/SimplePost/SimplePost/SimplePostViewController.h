@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SimplePostViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextField *myTextField;
+- (IBAction)mySendButton:(id)sender;
 
 @end

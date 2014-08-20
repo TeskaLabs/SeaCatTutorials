@@ -7,12 +7,16 @@
 //
 
 #import "SimplePostAppDelegate.h"
+//#import <SeaCatClientTrial/SeaCat.h>
 
 @implementation SimplePostAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    //[SeaCatClient configure];
+    
     return YES;
 }
 							

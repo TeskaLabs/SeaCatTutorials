@@ -10,7 +10,7 @@ var http = require('http');
 
 http.createServer(function (request, response) {
 	// Check whether the method is POST
-	if (req.method == 'POST') 
+	if (request.method == 'POST') 
 	{
 		// Redirect the output to STDOUT.
 		request.pipe(process.stdout);		
