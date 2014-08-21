@@ -20,6 +20,13 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.myTextField becomeFirstResponder];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -28,7 +35,7 @@
 
 - (void)doPostRequest:(NSString *)stringMessage
 {
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:1337"]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://nodejshost.seacat/"]];
     
     // set the POST method
     request.HTTPMethod = @"POST";
@@ -40,13 +47,31 @@
     request.HTTPBody = requestBodyData;
     
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    if (connection)
+    {
+        NSLog(@"Message was sent to SeaCat Gateway");
+    }
+    else
+    {
+        NSLog(@"Connection with your Gateway was not successful");
+    }
+}
+
+- (BOOL)textField:(UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *newText = [theTextField.text stringByReplacingCharactersInRange:range withString:string];
+
+    self.sendButton.enabled = ([newText length] > 0);
+    
+    return YES;
 }
 
 
 - (IBAction)mySendButton:(id)sender
 {
-    NSString *text = @"Hello Test";
+    [self doPostRequest:[self.myTextField text]];
     
-    [self doPostRequest:text];
+    [self.myTextField resignFirstResponder];
 }
 @end

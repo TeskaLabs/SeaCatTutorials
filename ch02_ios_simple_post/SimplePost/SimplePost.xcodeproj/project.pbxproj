@@ -21,7 +21,7 @@
 		2D7156E719A5522300A0CAF0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7156C919A5522300A0CAF0 /* UIKit.framework */; };
 		2D7156EF19A5522300A0CAF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D7156ED19A5522300A0CAF0 /* InfoPlist.strings */; };
 		2D7156F119A5522300A0CAF0 /* SimplePostTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7156F019A5522300A0CAF0 /* SimplePostTests.m */; };
-		2D7156FB19A5537600A0CAF0 /* SeaCatClientTrial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7156FA19A5537600A0CAF0 /* SeaCatClientTrial.framework */; };
+		2D7156FF19A69B9D00A0CAF0 /* SeaCatClientTrial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7156FE19A69B9D00A0CAF0 /* SeaCatClientTrial.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +54,7 @@
 		2D7156EC19A5522300A0CAF0 /* SimplePostTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimplePostTests-Info.plist"; sourceTree = "<group>"; };
 		2D7156EE19A5522300A0CAF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2D7156F019A5522300A0CAF0 /* SimplePostTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimplePostTests.m; sourceTree = "<group>"; };
-		2D7156FA19A5537600A0CAF0 /* SeaCatClientTrial.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeaCatClientTrial.framework; sourceTree = "<group>"; };
+		2D7156FE19A69B9D00A0CAF0 /* SeaCatClientTrial.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeaCatClientTrial.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +65,7 @@
 				2D7156C819A5522300A0CAF0 /* CoreGraphics.framework in Frameworks */,
 				2D7156CA19A5522300A0CAF0 /* UIKit.framework in Frameworks */,
 				2D7156C619A5522300A0CAF0 /* Foundation.framework in Frameworks */,
-				2D7156FB19A5537600A0CAF0 /* SeaCatClientTrial.framework in Frameworks */,
+				2D7156FF19A69B9D00A0CAF0 /* SeaCatClientTrial.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,7 +104,7 @@
 		2D7156C419A5522300A0CAF0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2D7156FA19A5537600A0CAF0 /* SeaCatClientTrial.framework */,
+				2D7156FE19A69B9D00A0CAF0 /* SeaCatClientTrial.framework */,
 				2D7156C519A5522300A0CAF0 /* Foundation.framework */,
 				2D7156C719A5522300A0CAF0 /* CoreGraphics.framework */,
 				2D7156C919A5522300A0CAF0 /* UIKit.framework */,

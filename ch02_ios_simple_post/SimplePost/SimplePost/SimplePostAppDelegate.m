@@ -7,7 +7,7 @@
 //
 
 #import "SimplePostAppDelegate.h"
-//#import <SeaCatClientTrial/SeaCat.h>
+#import <SeaCatClientTrial/SeaCat.h>
 
 @implementation SimplePostAppDelegate
 
@@ -15,7 +15,7 @@
 {
     // Override point for customization after application launch.
     
-    //[SeaCatClient configure];
+    [SeaCatClient configure];
     
     return YES;
 }
