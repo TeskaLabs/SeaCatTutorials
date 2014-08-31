@@ -27,28 +27,18 @@
     [self.myTextField becomeFirstResponder];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)doPostRequest:(NSString *)stringMessage
 {
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://nodejshost.seacat/"]];
+    NSString *bodyData = [stringMessage stringByAppendingString:@"=was sent by POST (and read in node.js)"];
     
-    // Set the POST method
-    request.HTTPMethod = @"POST";
+    NSMutableURLRequest *postRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://nodejshost.seacat/"]];
     
-    // Encoding Type
-    NSData *requestBodyData = [stringMessage dataUsingEncoding:NSUTF8StringEncoding];
+    [postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
-    // Set the Header
-    [request setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:requestBodyData];
+    [postRequest setHTTPMethod:@"POST"];
+    [postRequest setHTTPBody:[NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])]];
     
-    // Send the request
-    [NSURLConnection connectionWithRequest:request delegate:self];
+    [NSURLConnection connectionWithRequest:postRequest delegate:self];
 }
 
 - (BOOL)textField:(UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
