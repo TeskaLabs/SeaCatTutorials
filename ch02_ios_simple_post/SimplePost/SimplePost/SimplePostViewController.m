@@ -37,25 +37,18 @@
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://nodejshost.seacat/"]];
     
-    // set the POST method
+    // Set the POST method
     request.HTTPMethod = @"POST";
     
-    // set the header file
-    [request setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    
+    // Encoding Type
     NSData *requestBodyData = [stringMessage dataUsingEncoding:NSUTF8StringEncoding];
-    request.HTTPBody = requestBodyData;
     
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    // Set the Header
+    [request setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:requestBodyData];
     
-    if (connection)
-    {
-        NSLog(@"Message was sent to SeaCat Gateway");
-    }
-    else
-    {
-        NSLog(@"Connection with your Gateway was not successful");
-    }
+    // Send the request
+    [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
 - (BOOL)textField:(UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string

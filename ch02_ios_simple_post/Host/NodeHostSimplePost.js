@@ -10,8 +10,8 @@ var http = require('http');
 var querystring = require('querystring');
 
 http.createServer(function (request, response) {
-	// Check whether the method is POST.
-	if (request.method == 'POST') 
+	// Check whether the method = 'POST' and content type = 'application/x-www-form-urlencoded'.
+	if (request.headers['content-type'] === 'application/x-www-form-urlencoded' && request.method === 'POST') 
 	{
 		// variable postData is for storing incoming chunks of POST data.
 		var postData = "";
@@ -33,13 +33,15 @@ http.createServer(function (request, response) {
 		
 		// once all POST data is collected, following method is triggered.
 		request.addListener('end', function(){
+			// Prepare the header.
+			response.writeHead(200, {'Content-Type': 'text/json'});		
+			// Read post data.
+			var post = querystring.parse(postData);
 			// Write the result to console. 
-			console.log(JSON.parse(postData));
-		});	
-		// Prepare the header.
-		response.writeHead(200, {'Content-Type': 'text/json'});					
-		// End the request.
-		response.end();
+			console.log(post);
+			// End the request.
+			response.end();
+		});
 	}
 	// Handle the request if method is something else than POST.
 	else 
