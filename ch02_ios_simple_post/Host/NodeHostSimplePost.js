@@ -10,7 +10,7 @@ var http = require('http');
 var querystring = require('querystring');
 
 http.createServer(function (request, response) {
-	// Check whether the method = 'POST.
+	// Check whether the method = 'POST'.
 	if (request.method === 'POST') 
 	{
 		// Variable postData is for storing incoming chunks of POST data.
