@@ -13,7 +13,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    /* This method finalises SeaCat client initial configuration. It also ensures that client is integrated with Core Foundation URL Loading System (check Apple URLLoadingSystem in documentation for more information). So all URL requests are intercepted, analysed and eventually processed by SeaCat gateway instead of common HTTP transport. */
     
     [SeaCatClient configure];
     
