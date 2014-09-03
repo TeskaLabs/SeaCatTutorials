@@ -2,15 +2,11 @@
 //  SimplePostViewController.m
 //  SimplePost
 //
-//  Created by Radek Tomasek on 8/21/14.
+//  Created by Radek Tomasek on 9/2/14.
 //  Copyright (c) 2014 seatcat.mobi. All rights reserved.
 //
 
 #import "SimplePostViewController.h"
-
-@interface SimplePostViewController ()
-
-@end
 
 @implementation SimplePostViewController
 
@@ -18,18 +14,21 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    [self.myTextField becomeFirstResponder];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (BOOL)textField:(UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    [super viewWillAppear:animated];
+    NSString *newText = [theTextField.text stringByReplacingCharactersInRange:range withString:string];
     
-    [self.myTextField becomeFirstResponder];
+    self.mySendButton.enabled = ([newText length] > 0);
+    
+    return YES;
 }
 
 - (void)doPostRequest:(NSString *)stringMessage
 {
-    NSString *bodyData = [stringMessage stringByAppendingString:@"=was sent by POST (and read in node.js)"];
+    NSString *bodyData = [stringMessage stringByAppendingString:@"=was sent by POST (and read in Node.js)"];
     
     NSMutableURLRequest *postRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://nodejshost.seacat/"]];
     
@@ -41,17 +40,7 @@
     [NSURLConnection connectionWithRequest:postRequest delegate:self];
 }
 
-- (BOOL)textField:(UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    NSString *newText = [theTextField.text stringByReplacingCharactersInRange:range withString:string];
-
-    self.sendButton.enabled = ([newText length] > 0);
-    
-    return YES;
-}
-
-
-- (IBAction)mySendButton:(id)sender
+- (IBAction)sendAction:(id)sender
 {
     [self doPostRequest:[self.myTextField text]];
     

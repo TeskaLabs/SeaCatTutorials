@@ -2,7 +2,7 @@
 //  SimplePostTests.m
 //  SimplePostTests
 //
-//  Created by Radek Tomasek on 8/21/14.
+//  Created by Radek Tomasek on 9/2/14.
 //  Copyright (c) 2014 seatcat.mobi. All rights reserved.
 //
 
