@@ -1,0 +1,2 @@
+# We don't want to include node_modules directory into GIT
+node_modules
