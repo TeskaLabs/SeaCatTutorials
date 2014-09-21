@@ -14,11 +14,74 @@ var app = express();
 // Set default port 1337 or custom if defined by user externally.
 app.set('port', process.env.PORT || 1337);
 
+// Initialize books.
 
+var movies = [
+  {
+    id: 1,
+    name: "Forrest Gump",
+    director: "Robert Zemeckis",
+    release: 1994
+  },
+  { 
+    id: 2,
+    name: "Donnie Darko",
+    director: "Richard Kelly",
+    release: 2001
+  },
+  {
+    id: 3,
+    name: "Inception",
+    director: "Christopher Nolan",
+    release: 2010
+  }
+]; 
 
+function findIndexOfElement(inputArray, key, value)
+{
+  for (var i = 0; i < inputArray.length; i++)
+  {
+    if (inputArray[i][key] === value)
+    {
+      return i;
+    }
+  }
+  return -1;
+}
 
+// GET - list of all records.
+app.get('/api/books', function(request, response){
+  response.json(movies.map(function(movie){
+    return {
+      id: movie.id,
+      name: movie.name,
+      director: movie.director,
+      release: movie.release
+    }
+  }));
+});
 
-
+// GET - list of a record with particular id. If not found, forward the request to 404 - not found. 
+app.get('/api/book/:id', function(request, response, next){
+  // Read element index.
+  var elementIndex = findIndexOfElement(movies, 'id', request.params.id); 
+  
+  console.log(elementIndex);
+    
+  // Check whether the element exists or not. If not (following case, redirect the request to 404).
+  if (elementIndex < 0)
+  {
+    next();
+  }
+  response.json(movies.map(function(movie){
+    return {
+      id: movie.id,
+      name: movie.name,
+      director: movie.director,
+      release: movie.release
+    }
+  }));
+});
 
 // Use Express midleware to handle 404 and 500 error states.
 app.use(function(request, response){
