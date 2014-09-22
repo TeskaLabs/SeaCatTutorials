@@ -98,6 +98,29 @@ app.post('/api/books', function(request, response){
   response.status(200).end();
 });
 
+app.put('/api/book/:id', function(request, response, next){
+  // Get an integer interpretation of URL parameter. 
+  var urlIntParam = parseInt(request.params.id);
+  // Check whether the element exists or not (or it is not a number). If not (following case, redirect the request to 404).
+  if (urlIntParam < 0 || isNaN(urlIntParam)){
+    // Use following middleware - matched 404.
+    next();
+  }
+  else {
+    // Find array index in our movie array based on the input parameter (converted to integer).
+    var elementIndex = findIndexOfElement(movies, 'id', urlIntParam);
+    // Update element accordingly.
+    movies[elementIndex] = {
+      id: elementIndex,
+      name: request.body.name,
+      director: request.body.director,
+      release: request.body.release
+    };
+    // Element successfuly updated.
+    response.status(200).end();
+  }
+});
+
 // DELETE - remove particular record from array.
 app.delete('/api/book/:id', function(request, response, next){
   // Get an integer interpretation of URL parameter. 
