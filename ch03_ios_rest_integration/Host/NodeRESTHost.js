@@ -7,9 +7,14 @@
 
 // Include Express.js framework scripts.
 var express = require('express');
+var bodyParser = require('body-parser');
 
 // Initialize app by using Express framework.
 var app = express();
+
+// Use Body Parser.
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 // Set default port 1337 or custom if defined by user externally.
 app.set('port', process.env.PORT || 1337);
@@ -35,6 +40,11 @@ var movies = [
     release: 2010
   }
 ]; 
+
+// A simulation of creating new IDs. Basically get the last element and increase the value of an ID. 
+function getNewId(){
+  return movies[movies.length -1].id + 1;
+}
 
 function findIndexOfElement(inputArray, key, value){
   for (var i = 0; i < inputArray.length; i++){
@@ -79,6 +89,13 @@ app.get('/api/book/:id', function(request, response, next){
       release: selectedMovie.release
     });
   }
+});
+
+// POST - create a new element.
+app.post('/api/books', function(request, response){
+  var requestBody = request.body.name;
+  console.log(requestBody);
+  response.status(200).end();
 });
 
 // DELETE - remove particular record from array.
