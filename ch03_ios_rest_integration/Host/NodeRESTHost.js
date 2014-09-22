@@ -36,12 +36,9 @@ var movies = [
   }
 ]; 
 
-function findIndexOfElement(inputArray, key, value)
-{
-  for (var i = 0; i < inputArray.length; i++)
-  {
-    if (inputArray[i][key] === value)
-    {
+function findIndexOfElement(inputArray, key, value){
+  for (var i = 0; i < inputArray.length; i++){
+    if (inputArray[i][key] === value){
       return i;
     }
   }
@@ -65,16 +62,15 @@ app.get('/api/book/:id', function(request, response, next){
   // Get an integer interpretation of URL parameter. 
   var urlIntParam = parseInt(request.params.id);
   // Check whether the element exists or not (or it is not a number). If not (following case, redirect the request to 404).
-  if (elementIndex < 0 || isNaN(urlIntParam))
-  {
+  if (urlIntParam < 0 || isNaN(urlIntParam)){
+    // Use following middleware - matched 404.
     next();
   }
-  else
-  {
+  else {
     // Find array index in our movie array based on the input parameter (converted to integer). 
     var elementIndex = findIndexOfElement(movies, 'id', urlIntParam);
     // Get an object from movie array.
-    var selectedMovie = movies[urlIntParam];
+    var selectedMovie = movies[elementIndex];
     // Return JSON response with selected attributes.
     response.json({
       id: selectedMovie.id,
@@ -85,11 +81,30 @@ app.get('/api/book/:id', function(request, response, next){
   }
 });
 
+// DELETE - remove particular record from array.
+app.delete('/api/book/:id', function(request, response, next){
+  // Get an integer interpretation of URL parameter. 
+  var urlIntParam = parseInt(request.params.id);
+  // Check whether the element exists or not (or it is not a number). If not (following case, redirect the request to 404).
+  if (urlIntParam < 0 || isNaN(urlIntParam)){
+    // Use following middleware - matched 404.
+    next();
+  }
+  else {
+    // Find array index in our movie array based on the input parameter (converted to integer).
+    var elementIndex = findIndexOfElement(movies, 'id', urlIntParam);
+    // Delete element according to index parameter.
+    movies.splice(elementIndex, 1);
+    // Element successfuly deleted.
+    response.status(200);
+  }
+}); 
+
 // Use Express midleware to handle 404 and 500 error states.
 app.use(function(request, response){
    // Set status 404 if none of above routes processed incoming request. 
    response.status(404); 
-   // Generate the output
+   // Generate the output.
    response.send('404 - not found');
 });
 
