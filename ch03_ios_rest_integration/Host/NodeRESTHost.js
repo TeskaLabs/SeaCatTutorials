@@ -14,8 +14,7 @@ var app = express();
 // Set default port 1337 or custom if defined by user externally.
 app.set('port', process.env.PORT || 1337);
 
-// Initialize books.
-
+// Initialization of books array.
 var movies = [
   {
     id: 1,
@@ -62,25 +61,28 @@ app.get('/api/books', function(request, response){
 });
 
 // GET - list of a record with particular id. If not found, forward the request to 404 - not found. 
-app.get('/api/book/:id', function(request, response, next){
-  // Read element index.
-  var elementIndex = findIndexOfElement(movies, 'id', request.params.id); 
-  
-  console.log(elementIndex);
-    
-  // Check whether the element exists or not. If not (following case, redirect the request to 404).
-  if (elementIndex < 0)
+app.get('/api/book/:id', function(request, response, next){  
+  // Get an integer interpretation of URL parameter. 
+  var urlIntParam = parseInt(request.params.id);
+  // Check whether the element exists or not (or it is not a number). If not (following case, redirect the request to 404).
+  if (elementIndex < 0 || isNaN(urlIntParam))
   {
     next();
   }
-  response.json(movies.map(function(movie){
-    return {
-      id: movie.id,
-      name: movie.name,
-      director: movie.director,
-      release: movie.release
-    }
-  }));
+  else
+  {
+    // Find array index in our movie array based on the input parameter (converted to integer). 
+    var elementIndex = findIndexOfElement(movies, 'id', urlIntParam);
+    // Get an object from movie array.
+    var selectedMovie = movies[urlIntParam];
+    // Return JSON response with selected attributes.
+    response.json({
+      id: selectedMovie.id,
+      name: selectedMovie.name,
+      director: selectedMovie.director,
+      release: selectedMovie.release
+    });
+  }
 });
 
 // Use Express midleware to handle 404 and 500 error states.
