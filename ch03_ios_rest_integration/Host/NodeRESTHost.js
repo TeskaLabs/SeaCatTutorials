@@ -93,8 +93,16 @@ app.get('/api/book/:id', function(request, response, next){
 
 // POST - create a new element.
 app.post('/api/books', function(request, response){
-  var requestBody = request.body.name;
-  console.log(requestBody);
+  // complete request body
+  var requestBody = request.body;
+  
+  movies.push({
+    id: getNewId(),
+    name: requestBody.name,
+    director: requestBody.director,
+    release: requestBody.release
+  });
+  
   response.status(200).end();
 });
 
@@ -111,7 +119,7 @@ app.put('/api/book/:id', function(request, response, next){
     var elementIndex = findIndexOfElement(movies, 'id', urlIntParam);
     // Update element accordingly.
     movies[elementIndex] = {
-      id: elementIndex,
+      id: urlIntParam,
       name: request.body.name,
       director: request.body.director,
       release: request.body.release
