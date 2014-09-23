@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 // Set default port 1337 or custom if defined by user externally.
 app.set('port', process.env.PORT || 1337);
 
-// Initialization of books array.
+// Initialization of movies array.
 var movies = [
   {
     id: 1,
@@ -46,6 +46,7 @@ function getNewId(){
   return movies[movies.length -1].id + 1;
 }
 
+// Function findIndexOfElement helps to identify the array index according to specified key/value pair. 
 function findIndexOfElement(inputArray, key, value){
   for (var i = 0; i < inputArray.length; i++){
     if (inputArray[i][key] === value){
@@ -56,7 +57,7 @@ function findIndexOfElement(inputArray, key, value){
 }
 
 // GET - list of all records.
-app.get('/api/books', function(request, response){
+app.get('/api/movies', function(request, response){
   response.json(movies.map(function(movie){
     return {
       id: movie.id,
@@ -68,7 +69,7 @@ app.get('/api/books', function(request, response){
 });
 
 // GET - list of a record with particular id. If not found, forward the request to 404 - not found. 
-app.get('/api/book/:id', function(request, response, next){  
+app.get('/api/movie/:id', function(request, response, next){  
   // Get an integer interpretation of URL parameter. 
   var urlIntParam = parseInt(request.params.id);
   // Check whether the element exists or not (or it is not a number). If not (following case, redirect the request to 404).
@@ -92,7 +93,7 @@ app.get('/api/book/:id', function(request, response, next){
 });
 
 // POST - create a new element.
-app.post('/api/books', function(request, response){
+app.post('/api/movies', function(request, response){
   // complete request body
   var requestBody = request.body;
   
@@ -106,7 +107,8 @@ app.post('/api/books', function(request, response){
   response.status(200).end();
 });
 
-app.put('/api/book/:id', function(request, response, next){
+// PUT - update existing element.
+app.put('/api/movie/:id', function(request, response, next){
   // Get an integer interpretation of URL parameter. 
   var urlIntParam = parseInt(request.params.id);
   // Check whether the element exists or not (or it is not a number). If not (following case, redirect the request to 404).
@@ -130,7 +132,7 @@ app.put('/api/book/:id', function(request, response, next){
 });
 
 // DELETE - remove particular record from array.
-app.delete('/api/book/:id', function(request, response, next){
+app.delete('/api/movie/:id', function(request, response, next){
   // Get an integer interpretation of URL parameter. 
   var urlIntParam = parseInt(request.params.id);
   // Check whether the element exists or not (or it is not a number). If not (following case, redirect the request to 404).
