@@ -72,7 +72,7 @@ app.get('/api/movies', function(request, response){
 app.get('/api/movies/:id', function(request, response, next){  
   // Get an integer interpretation of URL parameter. 
   var urlIntParam = parseInt(request.params.id);
-  // Check whether the element exists or not (or it is not a number). If not (following case, redirect the request to 404).
+  // Check whether the element is a valid positive number. If not (following case, redirect the request to 404).
   if (urlIntParam < 0 || isNaN(urlIntParam)){
     // Use following middleware - matched 404.
     next();
@@ -80,15 +80,23 @@ app.get('/api/movies/:id', function(request, response, next){
   else {
     // Find array index in our movie array based on the input parameter (converted to integer). 
     var elementIndex = findIndexOfElement(movies, 'id', urlIntParam);
-    // Get an object from movie array.
-    var selectedMovie = movies[elementIndex];
-    // Return JSON response with selected attributes.
-    response.json({
-      id: selectedMovie.id,
-      name: selectedMovie.name,
-      director: selectedMovie.director,
-      release: selectedMovie.release
-    });
+    // If element exists, get the response, otherwise redirect to 404.
+    if (elementIndex >= 0){
+      // Get an object from movie array.
+      var selectedMovie = movies[elementIndex];
+      // Return JSON response with selected attributes.
+      response.json({
+        id: selectedMovie.id,
+        name: selectedMovie.name,
+        director: selectedMovie.director,
+        release: selectedMovie.release
+      });
+    }
+    else
+    {
+      // redirection to 404.
+      next();      
+    }
   }
 });
 
@@ -111,7 +119,7 @@ app.post('/api/movies', function(request, response){
 app.put('/api/movies/:id', function(request, response, next){
   // Get an integer interpretation of URL parameter. 
   var urlIntParam = parseInt(request.params.id);
-  // Check whether the element exists or not (or it is not a number). If not (following case, redirect the request to 404).
+  // Check whether the element is a valid positive number. If not (following case, redirect the request to 404).
   if (urlIntParam < 0 || isNaN(urlIntParam)){
     // Use following middleware - matched 404.
     next();
@@ -119,15 +127,22 @@ app.put('/api/movies/:id', function(request, response, next){
   else {
     // Find array index in our movie array based on the input parameter (converted to integer).
     var elementIndex = findIndexOfElement(movies, 'id', urlIntParam);
-    // Update element accordingly.
-    movies[elementIndex] = {
-      id: urlIntParam,
-      name: request.body.name,
-      director: request.body.director,
-      release: request.body.release
-    };
-    // Element successfuly updated.
-    response.status(200).end();
+    // If element exists, get the response, otherwise redirect to 404.
+    if (elementIndex >= 0){
+      // Update element accordingly.
+      movies[elementIndex] = {
+        id: urlIntParam,
+        name: request.body.name,
+        director: request.body.director,
+        release: request.body.release
+      };
+      // Element successfuly updated.
+      response.status(200).end();
+    }
+    else {
+      // redirection to 404.
+      next();
+    }
   }
 });
 
@@ -143,10 +158,17 @@ app.delete('/api/movies/:id', function(request, response, next){
   else {
     // Find array index in our movie array based on the input parameter (converted to integer).
     var elementIndex = findIndexOfElement(movies, 'id', urlIntParam);
-    // Delete element according to index parameter.
-    movies.splice(elementIndex, 1);
-    // Element successfuly deleted.
-    response.status(200);
+    // If element exists, get the response, otherwise redirect to 404.
+    if (elementIndex >= 0){
+      // Delete element according to index parameter.
+      movies.splice(elementIndex, 1);
+      // Element successfuly deleted.
+      response.status(200);
+    }
+    else {
+      // redirection to 404.
+      next();
+    }
   }
 }); 
 
