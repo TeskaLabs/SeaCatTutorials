@@ -69,7 +69,7 @@ app.get('/api/movies', function(request, response){
 });
 
 // GET - list of a record with particular id. If not found, forward the request to 404 - not found. 
-app.get('/api/movie/:id', function(request, response, next){  
+app.get('/api/movies/:id', function(request, response, next){  
   // Get an integer interpretation of URL parameter. 
   var urlIntParam = parseInt(request.params.id);
   // Check whether the element exists or not (or it is not a number). If not (following case, redirect the request to 404).
@@ -108,7 +108,7 @@ app.post('/api/movies', function(request, response){
 });
 
 // PUT - update existing element.
-app.put('/api/movie/:id', function(request, response, next){
+app.put('/api/movies/:id', function(request, response, next){
   // Get an integer interpretation of URL parameter. 
   var urlIntParam = parseInt(request.params.id);
   // Check whether the element exists or not (or it is not a number). If not (following case, redirect the request to 404).
@@ -132,7 +132,7 @@ app.put('/api/movie/:id', function(request, response, next){
 });
 
 // DELETE - remove particular record from array.
-app.delete('/api/movie/:id', function(request, response, next){
+app.delete('/api/movies/:id', function(request, response, next){
   // Get an integer interpretation of URL parameter. 
   var urlIntParam = parseInt(request.params.id);
   // Check whether the element exists or not (or it is not a number). If not (following case, redirect the request to 404).
