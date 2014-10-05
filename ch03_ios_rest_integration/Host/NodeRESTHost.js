@@ -5,14 +5,14 @@
 // 
 // Created in 2014 by Radek Tomasek / SeaCat Ltd. 
 
-// Include Express.js framework scripts.
+// Include external modules - Express.js and BodyParser.
 var express = require('express');
 var bodyParser = require('body-parser');
 
 // Initialize app by using Express framework.
 var app = express();
 
-// Use Body Parser.
+// Use Body Parser (Helps to process incoming requests).
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
@@ -102,7 +102,7 @@ app.get('/api/movies/:id', function(request, response, next){
 
 // POST - create a new element.
 app.post('/api/movies', function(request, response){
-  // complete request body
+  // Complete request body.
   var requestBody = request.body;
   
   movies.push({
