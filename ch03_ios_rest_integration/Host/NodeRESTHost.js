@@ -163,7 +163,7 @@ app.delete('/api/movies/:id', function(request, response, next){
       // Delete element according to index parameter.
       movies.splice(elementIndex, 1);
       // Element successfuly deleted.
-      response.status(200);
+      response.status(200).end();
     }
     else {
       // redirection to 404.
