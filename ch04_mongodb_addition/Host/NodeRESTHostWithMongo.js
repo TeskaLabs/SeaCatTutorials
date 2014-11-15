@@ -52,7 +52,7 @@ app.use(bodyParser.json());
 // Set default port 1337 or custom if defined by user externally.
 app.set('port', process.env.PORT || 1337);
 
-// Seeding Initial Data.
+// Seeding Initial Data. Populates only once, then the code is skipped. 
 Movie.find(function(err, movies){
   // In case of any intial data already exists, skip the rest of the method.
   if (movies.length) {
@@ -115,7 +115,7 @@ app.get('/api/movies/:id', function(request, response, next){
 });
 
 // POST - create a new element.
-app.post('/api/movies', function(request, response){
+app.post('/api/movies', function(request, response, next){
   // Complete request body.
   var requestBody = request.body;
   
@@ -131,68 +131,63 @@ app.post('/api/movies', function(request, response){
     if (error) {
       next();
     }
-    
+    // Return ID of element in response.
     response.json({id: movie._id});
+    // Prepare status code 200 and close the response.
+    response.status(200).end();
   });  
-  
-  response.status(200).end();
 });
 
 // PUT - update existing element.
 app.put('/api/movies/:id', function(request, response, next){
-  // Get an integer interpretation of URL parameter. 
-  var urlIntParam = parseInt(request.params.id);
-  // Check whether the element is a valid positive number. If not (following case, redirect the request to 404).
-  if (urlIntParam < 0 || isNaN(urlIntParam)){
-    // Use following middleware - matched 404.
-    next();
-  }
-  else {
-    // Find array index in our movie array based on the input parameter (converted to integer).
-    var elementIndex = findIndexOfElement(movies, 'id', urlIntParam);
-    // If element exists, get the response, otherwise redirect to 404.
-    if (elementIndex >= 0){
-      // Update element accordingly.
-      movies[elementIndex] = {
-        id: urlIntParam,
-        name: request.body.name,
-        director: request.body.director,
-        release: request.body.release
-      };
-      // Element successfuly updated.
-      response.status(200).end();
+  // Complete request body.
+  var requestBody = request.body;
+  // Find particular movie by ID.
+  Movie.findById(request.params.id,function(error, movie){
+    // If the ID is successfully found (movie is not null), assign the request attributes to object.
+    if (movie != null) {
+      movie.name = requestBody.name;
+      movie.director = requestBody.director;
+      movie.release = requestBody.release;
+      
+      movie.save(function(error, movie){
+        if (error) {
+          // In case of an issue forward the response to ERROR handles. 
+          next();        
+        }
+        // Return ID of element in response.
+        response.json({id: movie._id});        
+        // Element successfuly updated. Prepare status code 200 and close the response.
+        response.status(200).end();
+      });      
     }
     else {
-      // redirection to 404.
+      // In case of an issue forward the response to ERROR handles. 
       next();
     }
-  }
+  });
 });
 
 // DELETE - remove particular record from array.
 app.delete('/api/movies/:id', function(request, response, next){
-  // Get an integer interpretation of URL parameter. 
-  var urlIntParam = parseInt(request.params.id);
-  // Check whether the element exists or not (or it is not a number). If not (following case, redirect the request to 404).
-  if (urlIntParam < 0 || isNaN(urlIntParam)){
-    // Use following middleware - matched 404.
-    next();
-  }
-  else {
-    // Find array index in our movie array based on the input parameter (converted to integer).
-    var elementIndex = findIndexOfElement(movies, 'id', urlIntParam);
-    // If element exists, get the response, otherwise redirect to 404.
-    if (elementIndex >= 0){
-      // Delete element according to index parameter.
-      movies.splice(elementIndex, 1);
-      // Element successfuly deleted.
-      response.status(200).end();
+   // Find particular movie by Id.
+  Movie.findById(request.params.id,function(error, movie){
+    if (movie != null) {
+       movie.remove(function(error){
+         if (error) {
+           // In case of an issue forward the response to ERROR handles. 
+           next();        
+         }
+         response.json({id: movie._id});        
+         // Element successfuly updated.
+         response.status(200).end();
+       })
     }
     else {
-      // redirection to 404.
+      // In case of an issue forward the response to ERROR handles. 
       next();
     }
-  }
+  });
 }); 
 
 // Use Express midleware to handle 404 and 500 error states.
