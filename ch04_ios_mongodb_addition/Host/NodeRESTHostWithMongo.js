@@ -100,17 +100,20 @@ app.get('/api/movies', function(request, response, next){
 // GET - list of a record with particular id. If not found, forward the request to 404 - not found. 
 app.get('/api/movies/:id', function(request, response, next){  
   Movie.findById(request.params.id, function(error, movie){
+    if (movie != null)
+    {
+      //render the content.
+      response.json({
+        id: movie._id,
+        name: movie.name,
+        director: movie.director,
+        release: movie.release
+      });
+    }
     // In case of any error, forward request to error handler.
-    if (error) {
+    else {
       next();
     }
-    // Otherwise render the content.
-    response.json({
-      id: movie._id,
-      name: movie.name,
-      director: movie.director,
-      release: movie.release
-    });
   });
 });
 
