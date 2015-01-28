@@ -39,7 +39,7 @@
                     <navigationItem key="navigationItem" title="List of the Movies" id="CLo-70-SLO">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="uTu-XV-FLc">
                             <connections>
-                                <segue destination="xzE-bx-lSc" kind="show" identifier="AddMovie" id="HJd-CN-yQu"/>
+                                <segue destination="xzE-bx-lSc" kind="presentation" identifier="AddMovie" id="HJd-CN-yQu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
