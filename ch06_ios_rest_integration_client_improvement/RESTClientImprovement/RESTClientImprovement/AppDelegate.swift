@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  RESTClientImprovement
 //
-//  Created by Radek Tomasek on 1/25/15.
-//  Copyright (c) 2015 codeforios.com. All rights reserved.
+//  Created by Radek Tomasek on 2/14/15.
+//  Copyright (c) 2015 seacat.mobi. All rights reserved.
 //
 
 import UIKit
@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        SeaCatClient.configure()
+        
         return true
     }
 

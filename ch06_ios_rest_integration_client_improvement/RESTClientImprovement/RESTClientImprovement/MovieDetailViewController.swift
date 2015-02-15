@@ -1,11 +1,3 @@
-//
-//  MovieDetailViewController.swift
-//  RESTClientImprovement
-//
-//  Created by Radek Tomasek on 1/25/15.
-//  Copyright (c) 2015 codeforios.com. All rights reserved.
-//
-
 import UIKit
 
 protocol MovieDetailViewControllerDelegate {
@@ -13,12 +5,15 @@ protocol MovieDetailViewControllerDelegate {
     func movieDetailViewController(controller: MovieDetailViewController, didFinishEditingMovie movie: Movie)
 }
 
+// Definition of MovieDetailViewController class.
 class MovieDetailViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var directorTextField: UITextField!
     @IBOutlet weak var releaseYearTextField: UITextField!
     
+    // Variable for delegate, nil at the beginning.
     var delegate: MovieDetailViewControllerDelegate? = nil
+    // A check whether the ViewController is going to handle form for new data or existing ones.
     var movieToEdit: Movie?
     
     
@@ -26,8 +21,10 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         nameTextField.becomeFirstResponder()
+        // Change the default title to "Add movie"
         title = "Add Movie"
         
+        // Load data to textFields if we want to edit data.
         if let movie = movieToEdit {
             title = "Edit Movie"
             nameTextField.text = movie.name
@@ -35,20 +32,18 @@ class MovieDetailViewController: UIViewController {
             releaseYearTextField.text = String(movie.releaseYear)
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
+    // Read value of name textField.
     func getName() -> String {
         return nameTextField.text
     }
     
+    // Read value of director textField.
     func getDirector() -> String {
         return directorTextField.text
     }
     
+    // Read value of releaseYear textfield. If nil, then assign value 1900.
     func getReleaseYear() -> Int {
         var input = releaseYearTextField.text.toInt()
         var returnValue: Int
@@ -62,7 +57,8 @@ class MovieDetailViewController: UIViewController {
         
         return returnValue
     }
-
+    
+    // Make an action, distinguish between adding new data or editing existing ones. Using delegate to complete particular actions.
     @IBAction func saveItemAction(sender: AnyObject) {
         if delegate != nil {
             if let movie = movieToEdit {

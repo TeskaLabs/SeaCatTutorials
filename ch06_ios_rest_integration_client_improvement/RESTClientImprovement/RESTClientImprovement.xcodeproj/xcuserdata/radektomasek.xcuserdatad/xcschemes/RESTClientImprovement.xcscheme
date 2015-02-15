@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D1DB9BF1A7590DF00C6FB7C"
+               BlueprintIdentifier = "2DCFBDDD1A8FA7F600E6D9E6"
                BuildableName = "RESTClientImprovement.app"
                BlueprintName = "RESTClientImprovement"
                ReferencedContainer = "container:RESTClientImprovement.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D1DB9D41A7590DF00C6FB7C"
+               BlueprintIdentifier = "2DCFBDF21A8FA7F600E6D9E6"
                BuildableName = "RESTClientImprovementTests.xctest"
                BlueprintName = "RESTClientImprovementTests"
                ReferencedContainer = "container:RESTClientImprovement.xcodeproj">
@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D1DB9D41A7590DF00C6FB7C"
+               BlueprintIdentifier = "2DCFBDF21A8FA7F600E6D9E6"
                BuildableName = "RESTClientImprovementTests.xctest"
                BlueprintName = "RESTClientImprovementTests"
                ReferencedContainer = "container:RESTClientImprovement.xcodeproj">
@@ -56,7 +56,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D1DB9BF1A7590DF00C6FB7C"
+            BlueprintIdentifier = "2DCFBDDD1A8FA7F600E6D9E6"
             BuildableName = "RESTClientImprovement.app"
             BlueprintName = "RESTClientImprovement"
             ReferencedContainer = "container:RESTClientImprovement.xcodeproj">
@@ -75,7 +75,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D1DB9BF1A7590DF00C6FB7C"
+            BlueprintIdentifier = "2DCFBDDD1A8FA7F600E6D9E6"
             BuildableName = "RESTClientImprovement.app"
             BlueprintName = "RESTClientImprovement"
             ReferencedContainer = "container:RESTClientImprovement.xcodeproj">
@@ -93,7 +93,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D1DB9BF1A7590DF00C6FB7C"
+            BlueprintIdentifier = "2DCFBDDD1A8FA7F600E6D9E6"
             BuildableName = "RESTClientImprovement.app"
             BlueprintName = "RESTClientImprovement"
             ReferencedContainer = "container:RESTClientImprovement.xcodeproj">
